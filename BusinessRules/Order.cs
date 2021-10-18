@@ -11,7 +11,8 @@ namespace BusinessRules
             ITEM_ORDER,
             BOOK_ORDER,
             MEMBERSHIP_ORDER,
-            MEMBERSHIP_UPGRADE_ORDER
+            MEMBERSHIP_UPGRADE_ORDER,
+            VIDEO_ORDER
         }
 
         public IList<IOrderContent> Content
@@ -31,7 +32,13 @@ namespace BusinessRules
             Content.Add(item);
         }
 
-        public static IOrder OrderFactory(OrderType orderType)
+        public PackingSlip PackingSlip
+        {
+            get => (PackingSlip)Content[0];
+            set => throw new NotImplementedException();
+        }
+
+        public static IOrder OrderFactory(OrderType orderType, string title = null)
         {
             IOrder order;
 
@@ -49,10 +56,18 @@ namespace BusinessRules
                 case OrderType.MEMBERSHIP_UPGRADE_ORDER:
                     order = new MembershipOrder("Emailed the user about account upgrade");
                     break;
+                case OrderType.VIDEO_ORDER:
+                    order = new VideoOrder(title);
+                    break;
                 default:
                     throw new NotSupportedException();
             }
             return order;
+        }
+
+        public void AddFirstAidVideo()
+        {
+            PackingSlip.FirstAidVideoAttched = true;
         }
     }
 }

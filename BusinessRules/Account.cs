@@ -24,9 +24,9 @@ namespace BusinessRules
             set;
         }
 
-        public void ProcessOrderPayment(Order.OrderType orderType)
+        public void ProcessOrderPayment(Order.OrderType orderType, string title = null)
         {
-            CurrentOrder = Order.OrderFactory(orderType);
+            CurrentOrder = Order.OrderFactory(orderType, title);
 
             if (orderType == Order.OrderType.MEMBERSHIP_ORDER)
             {

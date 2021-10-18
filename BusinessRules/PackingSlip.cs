@@ -6,6 +6,8 @@ namespace BusinessRules
 {
     public class PackingSlip : IOrderContent
     {
+        public bool FirstAidVideoAttched;
+
         public string GetDetails()
         {
             return "Packing slip";

@@ -12,5 +12,13 @@ namespace BusinessRules
             set;
         }
         void AddContent(IOrderContent item);
+
+        public PackingSlip PackingSlip
+        {
+            get;
+            set;
+        }
+
+        void AddFirstAidVideo();
     }
 }

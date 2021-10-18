@@ -74,9 +74,8 @@ namespace BusinessRulesTests
         {
             Account userAccount = new Account();
             userAccount.ProcessOrderPayment(Order.OrderType.VIDEO_ORDER, "Learning To Ski");
-            Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Packing slip"));
-            PackingSlip ps = (PackingSlip)userAccount.CurrentOrder.Content[0];
-            Assert.That(ps.FirstAidVideoAttached, Is.True);
+            Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Packing slip"));   
+            Assert.That(userAccount.CurrentOrder.PackingSlip.FirstAidVideoAttched, Is.True);
         }
     }
 }

@@ -15,10 +15,16 @@ namespace BusinessRules
             get;
             set;
         }
+        public PackingSlip PackingSlip { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
         public void AddContent(IOrderContent item)
         {
             Content.Add(item);
+        }
+
+        public void AddFirstAidVideo()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
