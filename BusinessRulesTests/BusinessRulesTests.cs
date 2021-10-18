@@ -22,5 +22,19 @@ namespace BusinessRulesTests
             userAccount.ProcessOrderPayment(50);
             Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Packing slip"));
         }
+
+        [Test]
+        public void OrderBookTest()
+        {
+            Account userAccount = new Account()
+            {
+                CurrentOrder = new Order(),
+                OrderType = Account.OrderType.Book
+            };
+            userAccount.ProcessOrderPayment();
+            Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Packing slip"));
+            Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Royalty packing slip"));
+        }
+
     }
 }
