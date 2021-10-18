@@ -29,11 +29,11 @@ namespace BusinessRulesTests
             Account userAccount = new Account()
             {
                 CurrentOrder = new Order(),
-                OrderType = Account.OrderType.Book
+                OrderType = Order.BookOrderType
             };
-            userAccount.ProcessOrderPayment();
+            userAccount.ProcessOrderPayment(50);
             Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Packing slip"));
-            Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Royalty packing slip"));
+            Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Royalties packing slip"));
         }
 
     }

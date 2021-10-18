@@ -6,6 +6,8 @@ namespace BusinessRules
 {
     public class Order : IOrder
     {
+        public const string BookOrderType = "BOOK";
+
         public IList<IOrderContent> Content
         {
             get;
