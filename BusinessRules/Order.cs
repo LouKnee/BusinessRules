@@ -6,7 +6,11 @@ namespace BusinessRules
 {
     public class Order : IOrder
     {
-        public const string BookOrderType = "BOOK";
+        public enum OrderType
+        {
+            ITEM_ORDER,
+            BOOK_ORDER
+        }
 
         public IList<IOrderContent> Content
         {
@@ -17,11 +21,30 @@ namespace BusinessRules
         public Order()
         {
             Content = new List<IOrderContent>();
+            AddContent(new PackingSlip());
         }
 
         public void AddContent(IOrderContent item)
         {
             Content.Add(item);
+        }
+
+        public static IOrder OrderFactory(OrderType orderType)
+        {
+            IOrder order;
+
+            switch (orderType)
+            {
+                case OrderType.ITEM_ORDER:
+                    order = new Order();
+                    break;
+                case OrderType.BOOK_ORDER:
+                    order = new BookOrder();
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+            return order;
         }
     }
 }

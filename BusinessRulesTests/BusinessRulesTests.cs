@@ -15,23 +15,16 @@ namespace BusinessRulesTests
         [Test]
         public void OrderPhysicalProductTest()
         {
-            Account userAccount = new Account()
-            {
-                CurrentOrder = new Order()
-            };
-            userAccount.ProcessOrderPayment(50);
+            Account userAccount = new Account();
+            userAccount.ProcessOrderPayment(Order.OrderType.ITEM_ORDER);
             Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Packing slip"));
         }
 
         [Test]
         public void OrderBookTest()
         {
-            Account userAccount = new Account()
-            {
-                CurrentOrder = new Order(),
-                OrderType = Order.BookOrderType
-            };
-            userAccount.ProcessOrderPayment(50);
+            Account userAccount = new Account();
+            userAccount.ProcessOrderPayment(Order.OrderType.BOOK_ORDER);
             Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Packing slip"));
             Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Royalties packing slip"));
         }
