@@ -37,5 +37,12 @@ namespace BusinessRulesTests
             Assert.That(userAccount.AccountType, Is.EqualTo(Account.AccountMembership.MEMBER));
         }
 
+        public void OrderMembershipUpgradeTest()
+        {
+            Account userAccount = new Account();
+            userAccount.ProcessOrderPayment(Order.OrderType.MEMBERSHIP_UPGRADE_ORDER);
+            Assert.That(userAccount.AccountType, Is.EqualTo(Account.AccountMembership.PRIME_MEMBER));
+        }
+
     }
 }
