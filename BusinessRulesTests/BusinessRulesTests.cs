@@ -61,5 +61,22 @@ namespace BusinessRulesTests
             Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Emailed the user about account upgrade"));
         }
 
+        [Test]
+        public void OrderVideoTest()
+        {
+            Account userAccount = new Account();
+            userAccount.ProcessOrderPayment(Order.OrderType.VIDEO_ORDER);
+            Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Packing slip"));
+        }
+
+        [Test]
+        public void OrderLearningToSkiTest()
+        {
+            Account userAccount = new Account();
+            userAccount.ProcessOrderPayment(Order.OrderType.VIDEO_ORDER, "Learning To Ski");
+            Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Packing slip"));
+            PackingSlip ps = (PackingSlip)userAccount.CurrentOrder.Content[0];
+            Assert.That(ps.FirstAidVideoAttached, Is.True);
+        }
     }
 }
