@@ -10,7 +10,8 @@ namespace BusinessRules
         {
             ITEM_ORDER,
             BOOK_ORDER,
-            MEMBERSHIP_ORDER
+            MEMBERSHIP_ORDER,
+            MEMBERSHIP_UPGRADE_ORDER
         }
 
         public IList<IOrderContent> Content
@@ -43,7 +44,10 @@ namespace BusinessRules
                     order = new BookOrder();
                     break;
                 case OrderType.MEMBERSHIP_ORDER:
-                    order = new MembershipOrder();
+                    order = new MembershipOrder("Emailed the user about account activation");
+                    break;
+                case OrderType.MEMBERSHIP_UPGRADE_ORDER:
+                    order = new MembershipOrder("Emailed the user about account upgrade");
                     break;
                 default:
                     throw new NotSupportedException();

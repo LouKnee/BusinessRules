@@ -32,6 +32,10 @@ namespace BusinessRules
             {
                 AccountType = AccountMembership.MEMBER;
             }
+            else if (orderType == Order.OrderType.MEMBERSHIP_UPGRADE_ORDER)
+            {
+                AccountType = AccountMembership.PRIME_MEMBER;
+            }
         }
     }
 }
