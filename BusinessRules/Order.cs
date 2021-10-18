@@ -27,6 +27,13 @@ namespace BusinessRules
             AddContent(item);
         }
 
+        public Order(IOrderContent item1, IOrderContent item2)
+        {
+            Content = new List<IOrderContent>();
+            AddContent(item1);
+            AddContent(item2);
+        }
+
         public void AddContent(IOrderContent item)
         {
             Content.Add(item);
@@ -45,10 +52,10 @@ namespace BusinessRules
             switch (orderType)
             {
                 case OrderType.ITEM_ORDER:
-                    order = new Order(new PackingSlip());
+                    order = new Order(new PackingSlip(), new CommissionPayment());
                     break;
                 case OrderType.BOOK_ORDER:
-                    order = new BookOrder(new PackingSlip(), new RoyaltiesPackingSlip());
+                    order = new BookOrder(new PackingSlip(), new CommissionPayment(), new RoyaltiesPackingSlip());
                     break;
                 case OrderType.MEMBERSHIP_ORDER:
                     order = new MembershipOrder(new Email("Emailed the user about account activation"));

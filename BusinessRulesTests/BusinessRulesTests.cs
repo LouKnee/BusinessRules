@@ -83,7 +83,7 @@ namespace BusinessRulesTests
         {
             Account userAccount = new Account();
             userAccount.ProcessOrderPayment(Order.OrderType.ITEM_ORDER);
-            Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Commission Payment"));
+            Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Commission payment"));
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace BusinessRulesTests
         {
             Account userAccount = new Account();
             userAccount.ProcessOrderPayment(Order.OrderType.BOOK_ORDER);
-            Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Commission Payment"));
+            Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Commission payment"));
         }
     }
 }
