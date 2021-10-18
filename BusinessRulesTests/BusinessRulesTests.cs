@@ -1,4 +1,7 @@
+using BusinessRules;
 using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessRulesTests
 {
@@ -17,7 +20,7 @@ namespace BusinessRulesTests
                 CurrentOrder = new Order()
             };
             userAccount.ProcessOrderPayment(50);
-            Assert.That(() => userAccount.CurrentOrder.Contents, Contains.Item(new PackingSlip()));
+            Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Packing slip"));
         }
     }
 }
