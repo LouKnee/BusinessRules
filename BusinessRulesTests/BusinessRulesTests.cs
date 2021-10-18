@@ -29,5 +29,13 @@ namespace BusinessRulesTests
             Assert.That(userAccount.CurrentOrder.Content.Any(c => c.GetDetails() == "Royalties packing slip"));
         }
 
+        [Test]
+        public void OrderMembershipTest()
+        {
+            Account userAccount = new Account();
+            userAccount.ProcessOrderPayment(Order.OrderType.MEMBERSHIP_ORDER);
+            Assert.That(userAccount.User(c => c.GetDetails() == "Active member"));
+        }
+
     }
 }
