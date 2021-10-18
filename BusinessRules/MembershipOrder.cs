@@ -4,10 +4,10 @@ namespace BusinessRules
 {
     public class MembershipOrder : IOrder
     {
-        public MembershipOrder(string message)
+        public MembershipOrder(IOrderContent item)
         {
             Content = new List<IOrderContent>();
-            AddContent(new Email(message));
+            AddContent(item);
         }
 
         public IList<IOrderContent> Content
@@ -15,16 +15,10 @@ namespace BusinessRules
             get;
             set;
         }
-        public PackingSlip PackingSlip { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
         public void AddContent(IOrderContent item)
         {
             Content.Add(item);
-        }
-
-        public void AddFirstAidVideo()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

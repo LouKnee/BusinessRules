@@ -21,10 +21,10 @@ namespace BusinessRules
             set;
         }
 
-        public Order()
+        public Order(IOrderContent item)
         {
             Content = new List<IOrderContent>();
-            AddContent(new PackingSlip());
+            AddContent(item);
         }
 
         public void AddContent(IOrderContent item)
@@ -45,19 +45,19 @@ namespace BusinessRules
             switch (orderType)
             {
                 case OrderType.ITEM_ORDER:
-                    order = new Order();
+                    order = new Order(new PackingSlip());
                     break;
                 case OrderType.BOOK_ORDER:
-                    order = new BookOrder();
+                    order = new BookOrder(new PackingSlip(), new RoyaltiesPackingSlip());
                     break;
                 case OrderType.MEMBERSHIP_ORDER:
-                    order = new MembershipOrder("Emailed the user about account activation");
+                    order = new MembershipOrder(new Email("Emailed the user about account activation"));
                     break;
                 case OrderType.MEMBERSHIP_UPGRADE_ORDER:
-                    order = new MembershipOrder("Emailed the user about account upgrade");
+                    order = new MembershipOrder(new Email("Emailed the user about account upgrade"));
                     break;
                 case OrderType.VIDEO_ORDER:
-                    order = new VideoOrder(title);
+                    order = new VideoOrder(new PackingSlip(), title);
                     break;
                 default:
                     throw new NotSupportedException();

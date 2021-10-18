@@ -13,12 +13,5 @@ namespace BusinessRules
         }
         void AddContent(IOrderContent item);
 
-        public PackingSlip PackingSlip
-        {
-            get;
-            set;
-        }
-
-        void AddFirstAidVideo();
     }
 }

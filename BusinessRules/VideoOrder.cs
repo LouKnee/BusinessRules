@@ -6,8 +6,8 @@ namespace BusinessRules
     {
         private string _title;
 
-        public VideoOrder(string title) :
-            base()
+        public VideoOrder(IOrderContent item, string title) :
+            base(item)
         {
             _title = title;
             if (_title == "Learning To Ski")
