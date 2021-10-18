@@ -4,6 +4,20 @@ namespace BusinessRules
 {
     public class Account
     {
+        public enum AccountMembership
+        {
+            NON_MEMBER,
+            MEMBER,
+            PRIME_MEMBER
+        }
+
+        public Account()
+        {
+            AccountType = AccountMembership.NON_MEMBER;
+        }
+
+        public AccountMembership AccountType;
+
         public IOrder CurrentOrder
         {
             get;
@@ -13,6 +27,11 @@ namespace BusinessRules
         public void ProcessOrderPayment(Order.OrderType orderType)
         {
             CurrentOrder = Order.OrderFactory(orderType);
+
+            if (orderType == Order.OrderType.MEMBERSHIP_ORDER)
+            {
+                AccountType = AccountMembership.MEMBER;
+            }
         }
     }
 }

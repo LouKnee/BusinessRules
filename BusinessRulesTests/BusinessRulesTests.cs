@@ -34,7 +34,7 @@ namespace BusinessRulesTests
         {
             Account userAccount = new Account();
             userAccount.ProcessOrderPayment(Order.OrderType.MEMBERSHIP_ORDER);
-            Assert.That(userAccount.User(c => c.GetDetails() == "Active member"));
+            Assert.That(userAccount.AccountType, Is.EqualTo(Account.AccountMembership.MEMBER));
         }
 
     }

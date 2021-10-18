@@ -9,7 +9,8 @@ namespace BusinessRules
         public enum OrderType
         {
             ITEM_ORDER,
-            BOOK_ORDER
+            BOOK_ORDER,
+            MEMBERSHIP_ORDER
         }
 
         public IList<IOrderContent> Content
@@ -40,6 +41,9 @@ namespace BusinessRules
                     break;
                 case OrderType.BOOK_ORDER:
                     order = new BookOrder();
+                    break;
+                case OrderType.MEMBERSHIP_ORDER:
+                    order = new MembershipOrder();
                     break;
                 default:
                     throw new NotSupportedException();
